@@ -119,4 +119,36 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Scrollbar styling */
+  .chat-messages::-webkit-scrollbar,
+  [data-sidebar="content"]::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .chat-messages::-webkit-scrollbar-track,
+  [data-sidebar="content"]::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .chat-messages::-webkit-scrollbar-thumb,
+  [data-sidebar="content"]::-webkit-scrollbar-thumb {
+    background: oklch(0.708 0 0);
+    border-radius: 3px;
+  }
+  
+  .chat-messages::-webkit-scrollbar-thumb:hover,
+  [data-sidebar="content"]::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.556 0 0);
+  }
+  
+  .dark .chat-messages::-webkit-scrollbar-thumb,
+  .dark [data-sidebar="content"]::-webkit-scrollbar-thumb {
+    background: oklch(0.556 0 0);
+  }
+  
+  .dark .chat-messages::-webkit-scrollbar-thumb:hover,
+  .dark [data-sidebar="content"]::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.708 0 0);
+  }
 }
