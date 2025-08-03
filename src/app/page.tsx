@@ -87,7 +87,7 @@ export default function Page() {
         </header>
         <div className="flex flex-1 flex-col pt-0 min-h-0">
           {/* Chat Messages Area */}
-          <div className="flex-1 min-h-0 flex flex-col gap-3 overflow-y-scroll items-center justify-center" style={{scrollbarGutter: 'stable'}}>
+          <div className="flex-1 min-h-0 flex flex-col gap-3 overflow-y-scroll items-center justify-start p-4" style={{scrollbarGutter: 'stable'}}>
             {messages.length === 0 ? (
               <div className="text-center text-muted-foreground">
                 <h2 className="text-2xl font-bold mb-2">AI Asistanınıza Hoş Geldiniz</h2>
