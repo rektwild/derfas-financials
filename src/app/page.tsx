@@ -2,8 +2,7 @@
 
 import { useState } from "react"
 import { AppSidebar } from "@/components/app-sidebar"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { ChatInput } from "@/components/chat-page/chat-input"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -18,7 +17,6 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import { Send } from "lucide-react"
 
 interface Message {
   id: string
@@ -28,35 +26,25 @@ interface Message {
 
 export default function Page() {
   const [messages, setMessages] = useState<Message[]>([])
-  const [inputValue, setInputValue] = useState("")
 
-  const handleSendMessage = () => {
-    if (!inputValue.trim()) return
-
+  const handleSendMessage = (message: string) => {
     const newMessage: Message = {
       id: Date.now().toString(),
-      text: inputValue,
+      text: message,
       isUser: true,
     }
 
     setMessages(prev => [...prev, newMessage])
-    setInputValue("")
 
     // Simulate AI response
     setTimeout(() => {
       const aiResponse: Message = {
         id: (Date.now() + 1).toString(),
-        text: "Bu bir örnek AI yanıtıdır. Mesajınızı aldım: " + inputValue,
+        text: "Bu bir örnek AI yanıtıdır. Mesajınızı aldım: " + message,
         isUser: false,
       }
       setMessages(prev => [...prev, aiResponse])
     }, 1000)
-  }
-
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      handleSendMessage()
-    }
   }
 
   return (
@@ -94,7 +82,7 @@ export default function Page() {
                 <p>Bir mesaj yazarak sohbete başlayın</p>
               </div>
             ) : (
-              <div className="w-full max-w-2xl space-y-4">
+              <div className="w-full max-w-3xl space-y-4">
                 {messages.map((message) => (
                   <div
                     key={message.id}
@@ -116,19 +104,11 @@ export default function Page() {
           </div>
           
           {/* Fixed Input Area */}
-          <div className="bg-muted/50 rounded-xl p-4">
-            <div className="max-w-2xl mx-auto flex gap-2">
-              <Input
-                placeholder="Mesajınızı yazın..."
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                onKeyPress={handleKeyPress}
-                className="flex-1"
-              />
-              <Button onClick={handleSendMessage} size="icon">
-                <Send className="h-4 w-4" />
-              </Button>
-            </div>
+          <div className="px-4 flex justify-center">
+            <ChatInput 
+              onSendMessage={handleSendMessage}
+              placeholder="Mesajınızı yazın..."
+            />
           </div>
         </div>
       </SidebarInset>
