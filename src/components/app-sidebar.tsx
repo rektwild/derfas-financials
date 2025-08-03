@@ -2,20 +2,18 @@
 
 import * as React from "react"
 import {
-  BookOpen,
-  Bot,
   Command,
-  Frame,
+  MessageCircle,
   LifeBuoy,
-  Map,
-  PieChart,
   Send,
-  Settings2,
-  SquareTerminal,
+  Workflow,
+  Calculator,
+  Search,
+  Plus,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
+import { NavChats } from "@/components/nav-projects"
 import { NavSecondary } from "@/components/nav-secondary"
 import { NavUser } from "@/components/nav-user"
 import {
@@ -26,6 +24,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarGroup,
 } from "@/components/ui/sidebar"
 
 const data = {
@@ -36,25 +35,15 @@ const data = {
   },
   navMain: [
     {
-      title: "Playground",
+      title: "Flow",
       url: "#",
-      icon: SquareTerminal,
+      icon: Workflow,
       isActive: true,
     },
     {
-      title: "Models",
+      title: "Financials",
       url: "#",
-      icon: Bot,
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
+      icon: Calculator,
     },
   ],
   navSecondary: [
@@ -69,21 +58,21 @@ const data = {
       icon: Send,
     },
   ],
-  projects: [
+  chats: [
     {
-      name: "Design Engineering",
+      name: "Chat with AI Assistant",
       url: "#",
-      icon: Frame,
+      icon: MessageCircle,
     },
     {
-      name: "Sales & Marketing",
+      name: "Project Discussion",
       url: "#",
-      icon: PieChart,
+      icon: MessageCircle,
     },
     {
-      name: "Travel",
+      name: "Support Chat",
       url: "#",
-      icon: Map,
+      icon: MessageCircle,
     },
   ],
 }
@@ -99,18 +88,35 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
                   <Command className="size-4" />
                 </div>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">Acme Inc</span>
-                  <span className="truncate text-xs">Enterprise</span>
-                </div>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
+        
+        <SidebarGroup className="p-0">
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild tooltip="Search">
+                <a href="#">
+                  <Search />
+                  <span>Search</span>
+                </a>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild tooltip="New Chat">
+                <a href="#">
+                  <Plus />
+                  <span>New Chat</span>
+                </a>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarGroup>
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        <NavChats chats={data.chats} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>

@@ -1,10 +1,9 @@
 "use client"
 
 import {
-  Folder,
   MoreHorizontal,
-  Share,
   Trash2,
+  Edit,
   type LucideIcon,
 } from "lucide-react"
 
@@ -25,10 +24,10 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 
-export function NavProjects({
-  projects,
+export function NavChats({
+  chats,
 }: {
-  projects: {
+  chats: {
     name: string
     url: string
     icon: LucideIcon
@@ -38,9 +37,9 @@ export function NavProjects({
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>Projects</SidebarGroupLabel>
+      <SidebarGroupLabel>Chats</SidebarGroupLabel>
       <SidebarMenu>
-        {projects.map((item) => (
+        {chats.map((item) => (
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
               <a href={item.url}>
@@ -50,7 +49,7 @@ export function NavProjects({
             </SidebarMenuButton>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <SidebarMenuAction showOnHover>
+                <SidebarMenuAction className="opacity-0 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 transition-opacity">
                   <MoreHorizontal />
                   <span className="sr-only">More</span>
                 </SidebarMenuAction>
@@ -61,28 +60,18 @@ export function NavProjects({
                 align={isMobile ? "end" : "start"}
               >
                 <DropdownMenuItem>
-                  <Folder className="text-muted-foreground" />
-                  <span>View Project</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Share className="text-muted-foreground" />
-                  <span>Share Project</span>
+                  <Edit className="text-muted-foreground" />
+                  <span>Rename Chat</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
                   <Trash2 className="text-muted-foreground" />
-                  <span>Delete Project</span>
+                  <span>Delete Chat</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </SidebarMenuItem>
         ))}
-        <SidebarMenuItem>
-          <SidebarMenuButton>
-            <MoreHorizontal />
-            <span>More</span>
-          </SidebarMenuButton>
-        </SidebarMenuItem>
       </SidebarMenu>
     </SidebarGroup>
   )
