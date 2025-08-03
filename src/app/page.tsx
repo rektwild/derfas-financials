@@ -85,9 +85,9 @@ export default function Page() {
             </Breadcrumb>
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+        <div className="flex flex-1 flex-col gap-4 pt-0 min-h-0">
           {/* Chat Messages Area */}
-          <div className="flex-1 flex flex-col justify-center items-center">
+          <div className="flex-1 min-h-0 flex flex-col gap-3 overflow-y-auto items-start">
             {messages.length === 0 ? (
               <div className="text-center text-muted-foreground">
                 <h2 className="text-2xl font-bold mb-2">AI Asistanınıza Hoş Geldiniz</h2>
