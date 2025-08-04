@@ -74,42 +74,47 @@ export default function Page() {
           </div>
         </header>
         <div className="flex flex-1 flex-col pt-0 min-h-0">
-          {/* Chat Messages Area */}
-          <div className="chat-messages flex-1 min-h-0 flex flex-col gap-3 overflow-y-scroll items-center justify-start p-4" style={{scrollbarGutter: 'stable'}}>
-            {messages.length === 0 ? (
-              <div className="text-center text-muted-foreground">
-                <h2 className="text-2xl font-bold mb-2">AI Asistanınıza Hoş Geldiniz</h2>
-                <p>Bir mesaj yazarak sohbete başlayın</p>
-              </div>
-            ) : (
-              <div className="w-full max-w-3xl space-y-4">
-                {messages.map((message) => (
-                  <div
-                    key={message.id}
-                    className={`flex ${message.isUser ? "justify-end" : "justify-start"}`}
-                  >
+          {messages.length === 0 ? (
+            /* Centered Input when no messages */
+            <div className="flex-1 flex items-center justify-center px-4">
+              <ChatInput 
+                onSendMessage={handleSendMessage}
+                placeholder="Mesajınızı yazın..."
+              />
+            </div>
+          ) : (
+            <>
+              {/* Chat Messages Area */}
+              <div className="chat-messages flex-1 min-h-0 flex flex-col gap-3 overflow-y-scroll items-center justify-start p-4" style={{scrollbarGutter: 'stable'}}>
+                <div className="w-full max-w-3xl space-y-4">
+                  {messages.map((message) => (
                     <div
-                      className={`max-w-[70%] rounded-lg px-4 py-2 ${
-                        message.isUser
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-muted"
-                      }`}
+                      key={message.id}
+                      className={`flex ${message.isUser ? "justify-end" : "justify-start"}`}
                     >
-                      {message.text}
+                      <div
+                        className={`max-w-[70%] rounded-lg px-4 py-2 ${
+                          message.isUser
+                            ? "bg-primary text-primary-foreground"
+                            : "bg-muted"
+                        }`}
+                      >
+                        {message.text}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            )}
-          </div>
-          
-          {/* Fixed Input Area */}
-          <div className="px-4 flex justify-center">
-            <ChatInput 
-              onSendMessage={handleSendMessage}
-              placeholder="Mesajınızı yazın..."
-            />
-          </div>
+              
+              {/* Fixed Input Area at bottom */}
+              <div className="px-4 flex justify-center">
+                <ChatInput 
+                  onSendMessage={handleSendMessage}
+                  placeholder="Mesajınızı yazın..."
+                />
+              </div>
+            </>
+          )}
         </div>
       </SidebarInset>
     </SidebarProvider>
