@@ -37,7 +37,7 @@ export function NavChats({
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>Chats</SidebarGroupLabel>
+      <SidebarGroupLabel>Screener</SidebarGroupLabel>
       <SidebarMenu>
         {chats.map((item) => (
           <SidebarMenuItem key={item.name}>
