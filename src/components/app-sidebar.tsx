@@ -3,15 +3,13 @@
 import * as React from "react"
 import {
   Command,
+  MessageCircle,
   LifeBuoy,
   Send,
   Workflow,
   Calculator,
   Search,
   Plus,
-  LineChart,
-  TrendingUp,
-  PiggyBank,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -62,19 +60,19 @@ const data = {
   ],
   chats: [
     {
-      name: "Indices",
+      name: "Chat with AI Assistant",
       url: "#",
-      icon: LineChart,
+      icon: MessageCircle,
     },
     {
-      name: "Stocks",
+      name: "Project Discussion",
       url: "#",
-      icon: TrendingUp,
+      icon: MessageCircle,
     },
     {
-      name: "Funds",
+      name: "Support Chat",
       url: "#",
-      icon: PiggyBank,
+      icon: MessageCircle,
     },
   ],
 }
